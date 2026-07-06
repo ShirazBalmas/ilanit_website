@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Varela+Round&family=Amatic+SC:wght@700&family=David+Libre&display=swap');
+
+:root {
+  --cream: #faf6f0;
+  --cream-dark: #f3ecdf;
+  --gold: #c9a24b;
+  --gold-dark: #a98432;
+  --gold-light: #e7d5ac;
+  --ink: #3e3428;
+  --ink-soft: #6b5a43;
+  --white: #ffffff;
+  --danger: #b3261e;
+  --success: #2e7d32;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 20px rgba(62, 52, 40, 0.08);
+  --shadow-hover: 0 8px 28px rgba(62, 52, 40, 0.14);
+  --font-body: 'Assistant', sans-serif;
+  --font-display: 'Frank Ruhl Libre', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 10px 14px;
+  border: 1px solid var(--gold-light);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--ink);
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.container {
+  width: min(1180px, 100% - 32px);
+  margin-inline: auto;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--gold-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold-dark);
+  border: 2px solid var(--gold);
+}
+
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+
+.btn-sm {
+  padding: 8px 18px;
+  font-size: 0.9rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--ink-soft);
+  margin-bottom: 36px;
+}
+
+.error-msg {
+  background: #fdeceb;
+  color: var(--danger);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.success-msg {
+  background: #eaf5ea;
+  color: var(--success);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--cream-dark);
+  color: var(--ink-soft);
+}
+
+.page {
+  padding: 40px 0 80px;
+  min-height: 60vh;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-products {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.grid-categories {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* option pills (sizes, colors, fonts...) */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold-light);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 0.95rem;
+  transition: all 0.15s;
+}
+
+.pill.selected {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--white);
+}
+
+.color-swatch {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-light);
+  padding: 0;
+  position: relative;
+}
+
+.color-swatch.selected {
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 3px var(--gold-light);
+}
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1.5px solid var(--gold-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.qty-control button {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  color: var(--gold-dark);
+}
+
+.qty-control span {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* WhatsApp floating button */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-hover);
+  font-size: 1.6rem;
+  transition: transform 0.2s;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.08);
+}
+
+table.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+table.admin-table th,
+table.admin-table td {
+  padding: 10px 14px;
+  text-align: right;
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 0.95rem;
+}
+
+table.admin-table th {
+  background: var(--cream-dark);
+  font-weight: 700;
+}

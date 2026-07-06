@@ -1,0 +1,35 @@
+.catalog-filters {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog-tools {
+  display: flex;
+  gap: 12px;
+}
+
+.catalog-tools input {
+  max-width: 320px;
+}
+
+.catalog-tools select {
+  max-width: 220px;
+}
+
+@media (max-width: 560px) {
+  .catalog-tools {
+    flex-direction: column;
+  }
+  .catalog-tools input,
+  .catalog-tools select {
+    max-width: none;
+  }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#EFE3D0"/>
+  <circle cx="300" cy="255" r="110" fill="none" stroke="#C9A24B" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="300" y="248" text-anchor="middle" font-family="Arial" font-size="52" fill="#C9A24B">&#129525;</text>
+  <text x="300" y="300" text-anchor="middle" font-family="Arial" font-size="26" fill="#8A7455">&#10047;</text>
+  <text x="300" y="450" text-anchor="middle" font-family="Arial" font-size="30" fill="#6B5A43" direction="rtl">מתנות לתינוקות</text>
+</svg>

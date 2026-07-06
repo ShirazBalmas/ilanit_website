@@ -1,0 +1,139 @@
+.hero {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 60%, var(--gold-light) 130%);
+  padding: 90px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--gold-dark);
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.hero-desc {
+  max-width: 640px;
+  margin: 0 auto 32px;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  padding: 48px 0 12px;
+}
+
+.category-card {
+  text-align: center;
+  padding-bottom: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.category-card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+}
+
+.category-card span {
+  display: block;
+  font-weight: 700;
+  padding-top: 10px;
+}
+
+.gallery-section {
+  background: var(--cream-dark);
+  padding-bottom: 48px;
+  margin-top: 36px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+}
+
+.gallery-item img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+}
+
+.gallery-item figcaption {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.testimonial {
+  padding: 24px;
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.testimonial cite {
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-style: normal;
+}
+
+.contact-section {
+  padding-bottom: 48px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-item {
+  padding: 18px 20px;
+  font-weight: 600;
+}
+
+.contact-form {
+  padding: 24px;
+}
+
+@media (max-width: 760px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 60px 0;
+  }
+}
