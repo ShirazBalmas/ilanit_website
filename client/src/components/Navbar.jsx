@@ -22,7 +22,7 @@ export default function Navbar() {
     <header className="navbar">
       <div className="container navbar-inner">
         <Link to="/" className="brand" onClick={close}>
-          <span className="brand-icon">&#129525;</span>
+          <img src="/ilanit.jpeg" alt="אילנית רקמה" className="brand-icon" />
           <span>
             <strong>אילנית רקמה</strong>
             <small>מתנות בעיצוב אישי</small>
