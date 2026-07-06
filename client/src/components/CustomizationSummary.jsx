@@ -12,6 +12,15 @@ export default function CustomizationSummary({ customization }) {
     if (c.embroidery.font) parts.push(`גופן: ${c.embroidery.font}`);
     if (c.embroidery.location) parts.push(`מיקום: ${c.embroidery.location}`);
   }
+  for (const s of c.selections || []) {
+    if (s.value) parts.push(`${s.label}: ${s.value}`);
+  }
+  for (const t of c.textValues || []) {
+    if (t.value?.trim()) parts.push(`${t.label}: "${t.value}"`);
+  }
+  for (const a of c.addons || []) {
+    parts.push(a.label);
+  }
   if (c.logoUrl) parts.push('כולל לוגו');
   if (c.giftPackaging) parts.push('אריזת מתנה');
   if (c.notes) parts.push(`הערות: ${c.notes}`);

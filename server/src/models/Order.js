@@ -20,6 +20,10 @@ const orderItemSchema = new mongoose.Schema(
       logoUrl: String,
       giftPackaging: { type: Boolean, default: false },
       notes: String,
+      // selections from the flexible option system (gift-box products)
+      selections: [{ label: String, value: String, _id: false }],
+      textValues: [{ label: String, value: String, _id: false }],
+      addons: [{ label: String, price: Number, _id: false }],
     },
   },
   { _id: false }

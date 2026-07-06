@@ -139,8 +139,8 @@ export default function Home() {
         <p className="section-subtitle">נשמח לעזור לכם לעצב את המתנה המושלמת</p>
         <div className="contact-grid">
           <div className="contact-info">
-            <a href="tel:+972500000000" className="card contact-item">&#128222; 050-0000000</a>
-            <a href="https://wa.me/972500000000" target="_blank" rel="noreferrer" className="card contact-item">
+            <a href="tel:+972509984731" className="card contact-item">&#128222; 050-9984731</a>
+            <a href="https://wa.me/972509984731" target="_blank" rel="noreferrer" className="card contact-item">
               &#128172; שלחו הודעת וואטסאפ
             </a>
             <div className="card contact-item">&#128205; כרמיאל, ישראל - איסוף עצמי בתיאום מראש</div>

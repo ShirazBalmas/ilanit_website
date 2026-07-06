@@ -64,7 +64,61 @@ export const categories = [
   { name: 'חולצות', slug: 'shirts', description: 'חולצות מודפסות ורקומות' },
   { name: 'תיקים', slug: 'bags', description: 'תיקים בעיצוב אישי' },
   { name: 'מתנות בהדפסה אישית', slug: 'custom-prints', description: 'מתנות מודפסות בעיצוב שלכם' },
+  { name: 'מארזי מתנה', slug: 'gift-boxes', description: 'מארזים מפנקים בהתאמה אישית מלאה' },
 ];
+
+// color palette for the gift-box option groups (name -> hex)
+const C = {
+  'תכלת': '#9CC3E4', 'אדום': '#C0392B', 'ורוד': '#F2C4CE', 'חום': '#6B4A2B',
+  'לבן': '#FFFFFF', 'אפור': '#C8C8C8', 'כחול נייבי': '#1F3A5F', 'מוקה': '#8A6D5B',
+  'ירוק': '#4E7A51', 'שחור': '#2B2B2B', 'כסוף': '#B8BCC4', 'ירוק זית': '#6B7A3A',
+  'ורוד כהה': '#C25E7A', 'כחול': '#2E5A9C', 'זהב': '#C9A24B',
+};
+const colorChoices = (names) => names.map((n) => ({ label: n, hex: C[n] || '#DDDDDD', extraPrice: 0 }));
+
+// gift-box style customization matching a multi-component premium gift set
+export const giftBoxCustomization = {
+  allowEmbroidery: false,
+  allowText: false,
+  allowLogoUpload: false,
+  threadColors: [],
+  fontOptions: [],
+  embroideryLocations: [],
+  extraPriceForEmbroidery: 0,
+  extraPriceForLongText: 0,
+  longTextThreshold: 15,
+  extraPriceForLogo: 0,
+  extraPriceForGiftPackaging: 0,
+  optionGroups: [
+    { label: 'צבע המגבת גוף', required: true,
+      choices: colorChoices(['תכלת', 'אדום', 'ורוד', 'חום', 'לבן', 'אפור', 'כחול נייבי', 'מוקה', 'ירוק', 'שחור']) },
+    { label: 'צבע המגבת פנים', required: true,
+      choices: colorChoices(['לבן', 'ורוד', 'תכלת', 'חום', 'אדום', 'מוקה', 'כחול נייבי', 'שחור']) },
+    { label: 'צבע הרקמה על המגבות', required: true,
+      choices: colorChoices(['לבן', 'כסוף', 'אדום', 'אפור', 'שחור', 'תכלת', 'חום', 'ירוק זית', 'ורוד כהה']) },
+    { label: 'צורה מעל הכיתוב במגבת גוף', required: false,
+      choices: ['ללא', 'כתר', 'כוכב', 'לב', 'מפתח סול', 'עוגן', 'פרח', 'אינפיניטי', 'פתית שלג', 'מטוס קטן']
+        .map((l) => ({ label: l, extraPrice: 0 })) },
+    { label: 'צבע החוגרון והכיסוי לדיסקית', required: true,
+      choices: colorChoices(['שחור', 'ירוק זית']) },
+    { label: 'צבע השק כביסה', required: true, choices: colorChoices(['לבן', 'שחור']) },
+    { label: 'צבע הרקמה על השק כביסה', required: true,
+      choices: colorChoices(['שחור', 'לבן', 'ירוק', 'כחול', 'אדום', 'אפור', 'זהב']) },
+  ],
+  extraTextFields: [
+    { label: 'פירוט הרקמה במגבת גוף', required: true, placeholder: 'שם / כיתוב לרקמה' },
+    { label: 'פירוט הרקמה במגבת פנים', required: false, placeholder: 'שם / כיתוב לרקמה' },
+    { label: 'פירוט הרקמה בכיסוי לדיסקית', required: false },
+    { label: 'פירוט הרקמה בחוגרון', required: false },
+    { label: 'פירוט הרקמה בשק כביסה', required: false },
+    { label: 'הערות', required: false, placeholder: 'בקשות מיוחדות' },
+  ],
+  addons: [
+    { label: 'תוספת רקמה בצד השני', price: 20 },
+    { label: 'תוספת שרשרת לדיסקית', price: 10 },
+    { label: 'תוספת סלסלה למקלחת', price: 30 },
+  ],
+};
 
 export const defaultCustomization = {
   allowEmbroidery: true,
@@ -173,6 +227,11 @@ export const products = [
     'ספל קרמיקה איכותי עם הדפסת תמונה, שם או משפט אישי. מתנה קטנה שעושה שמח כל בוקר.',
     { availableColors: [{ name: 'לבן', hex: '#FFFFFF' }, { name: 'שחור', hex: '#2B2B2B' }],
       customizationOptions: { ...defaultCustomization, allowEmbroidery: false, allowLogoUpload: true, extraPriceForLogo: 0 } }],
+  ['מארז מתנת גיוס פרימיום', 'army-gift-box-premium', 'gift-boxes', 290,
+    'מארז מפנק לגיוס עם רקמה אישית מלאה',
+    'מארז פרימיום לגיוס הכולל מגבת גוף, מגבת פנים, כיסוי לדיסקית, חוגרון ושק כביסה - הכל עם רקמה אישית. בחרו צבע לכל פריט, צבע רקמה, צורה מעל הכיתוב והוסיפו תוספות לבחירתכם.',
+    { availableSizes: [], availableColors: [], material: 'כותנה 100%', isFeatured: true,
+      customizationOptions: giftBoxCustomization }],
 ];
 
 export const galleryCaptions = [

@@ -14,6 +14,15 @@ export function calcUnitPrice(product, customization = {}) {
   if (customization.logoUrl) price += opts.extraPriceForLogo || 0;
   if (customization.giftPackaging) price += opts.extraPriceForGiftPackaging || 0;
 
+  for (const sel of customization.selections || []) {
+    const group = (opts.optionGroups || []).find((g) => g.label === sel.label);
+    const choice = group?.choices.find((c) => c.label === sel.value);
+    if (choice?.extraPrice) price += choice.extraPrice;
+  }
+  for (const addon of customization.addons || []) {
+    price += addon.price || 0;
+  }
+
   return price;
 }
 

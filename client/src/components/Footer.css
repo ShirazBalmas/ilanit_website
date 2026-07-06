@@ -35,6 +35,34 @@
   color: var(--gold-light);
 }
 
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  opacity: 0.9;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.social-btn:hover {
+  opacity: 1;
+  transform: translateX(-3px);
+}
+
+.social-instagram:hover {
+  color: #e1306c;
+}
+
+.social-facebook:hover {
+  color: #4267b2;
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(250, 246, 240, 0.15);
   padding: 16px 0;

@@ -12,6 +12,9 @@ const emptyCustomization = {
   logoUrl: '',
   giftPackaging: false,
   notes: '',
+  selections: [], // [{ label, value }] from optionGroups
+  textValues: [], // [{ label, value }] from extraTextFields
+  addons: [], // [{ label, price }] chosen add-ons
 };
 
 export default function ProductDetails() {
@@ -53,6 +56,38 @@ export default function ProductDetails() {
     setCustomization((c) => ({ ...c, embroidery: { ...c.embroidery, ...patch } }));
   }
 
+  // flexible option system helpers
+  function setSelection(label, value) {
+    setCustomization((c) => {
+      const rest = (c.selections || []).filter((s) => s.label !== label);
+      return { ...c, selections: [...rest, { label, value }] };
+    });
+  }
+  const selectedValue = (label) =>
+    (customization.selections || []).find((s) => s.label === label)?.value || '';
+
+  function setTextValue(label, value) {
+    setCustomization((c) => {
+      const rest = (c.textValues || []).filter((t) => t.label !== label);
+      return { ...c, textValues: [...rest, { label, value }] };
+    });
+  }
+  const textValue = (label) =>
+    (customization.textValues || []).find((t) => t.label === label)?.value || '';
+
+  function toggleAddon(addon) {
+    setCustomization((c) => {
+      const has = (c.addons || []).some((a) => a.label === addon.label);
+      return {
+        ...c,
+        addons: has
+          ? c.addons.filter((a) => a.label !== addon.label)
+          : [...(c.addons || []), { label: addon.label, price: addon.price }],
+      };
+    });
+  }
+  const hasAddon = (label) => (customization.addons || []).some((a) => a.label === label);
+
   async function handleLogoUpload(e) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -78,6 +113,12 @@ export default function ProductDetails() {
       if (!emb.threadColor) errs.push('יש לבחור צבע חוט');
       if (!emb.font) errs.push('יש לבחור סוג גופן');
       if (opts.embroideryLocations?.length && !emb.location) errs.push('יש לבחור מיקום רקמה');
+    }
+    for (const group of opts.optionGroups || []) {
+      if (group.required && !selectedValue(group.label)) errs.push(`יש לבחור "${group.label}"`);
+    }
+    for (const field of opts.extraTextFields || []) {
+      if (field.required && !textValue(field.label).trim()) errs.push(`יש למלא "${field.label}"`);
     }
     return errs;
   }
@@ -173,6 +214,76 @@ export default function ProductDetails() {
                   />
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* flexible option groups (gift-box products) */}
+          {(opts.optionGroups || []).map((group) => (
+            <div className="option-block" key={group.label}>
+              <label>
+                {group.label} {group.required && '*'}
+                {selectedValue(group.label) && (
+                  <span className="chosen">({selectedValue(group.label)})</span>
+                )}
+              </label>
+              <div className="pill-group">
+                {group.choices.map((choice) =>
+                  choice.hex ? (
+                    <button
+                      key={choice.label}
+                      type="button"
+                      title={choice.label}
+                      aria-label={choice.label}
+                      className={`color-swatch ${selectedValue(group.label) === choice.label ? 'selected' : ''}`}
+                      style={{ background: choice.hex }}
+                      onClick={() => setSelection(group.label, choice.label)}
+                    />
+                  ) : (
+                    <button
+                      key={choice.label}
+                      type="button"
+                      className={`pill ${selectedValue(group.label) === choice.label ? 'selected' : ''}`}
+                      onClick={() => setSelection(group.label, choice.label)}
+                    >
+                      {choice.label}
+                      {choice.extraPrice > 0 && ` (+${formatPrice(choice.extraPrice)})`}
+                    </button>
+                  )
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* per-component embroidery text fields */}
+          {(opts.extraTextFields || []).map((field) => (
+            <div className="option-block" key={field.label}>
+              <label>{field.label} {field.required && '*'}</label>
+              <textarea
+                rows="2"
+                placeholder={field.placeholder || ''}
+                value={textValue(field.label)}
+                onChange={(e) => setTextValue(field.label, e.target.value)}
+              />
+            </div>
+          ))}
+
+          {/* paid add-ons */}
+          {(opts.addons || []).length > 0 && (
+            <div className="option-block">
+              <label>תוספות</label>
+              {opts.addons.map((addon) => (
+                <label className="toggle-label addon-row" key={addon.label}>
+                  <input
+                    type="checkbox"
+                    checked={hasAddon(addon.label)}
+                    onChange={() => toggleAddon(addon)}
+                  />
+                  <span>
+                    {addon.label}
+                    {addon.price > 0 && ` (+${formatPrice(addon.price)})`}
+                  </span>
+                </label>
+              ))}
             </div>
           )}
 
@@ -371,6 +482,17 @@ export default function ProductDetails() {
                   {emb.location && <li><span>מיקום:</span> {emb.location}</li>}
                 </>
               )}
+              {(customization.selections || []).map((s) => (
+                <li key={s.label}><span>{s.label}:</span> {s.value}</li>
+              ))}
+              {(customization.textValues || [])
+                .filter((t) => t.value?.trim())
+                .map((t) => (
+                  <li key={t.label}><span>{t.label}:</span> {t.value}</li>
+                ))}
+              {(customization.addons || []).map((a) => (
+                <li key={a.label}><span>{a.label}:</span> כן</li>
+              ))}
               {customization.logoUrl && <li><span>לוגו:</span> הועלה ✓</li>}
               {customization.giftPackaging && <li><span>אריזת מתנה:</span> כן</li>}
               <li><span>כמות:</span> {quantity}</li>

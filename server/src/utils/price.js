@@ -14,6 +14,19 @@ export function calcUnitPrice(product, customization = {}) {
   if (customization.logoUrl) price += opts.extraPriceForLogo || 0;
   if (customization.giftPackaging) price += opts.extraPriceForGiftPackaging || 0;
 
+  // flexible option system: add the extraPrice of each selected choice, and
+  // the price of each selected add-on
+  for (const sel of customization.selections || []) {
+    const group = (opts.optionGroups || []).find((g) => g.label === sel.label);
+    const choice = group?.choices.find((c) => c.label === sel.value);
+    if (choice?.extraPrice) price += choice.extraPrice;
+  }
+  for (const addon of customization.addons || []) {
+    // trust the product's price, never the client-supplied one
+    const real = (opts.addons || []).find((a) => a.label === addon.label);
+    if (real?.price) price += real.price;
+  }
+
   return price;
 }
 

@@ -35,6 +35,19 @@ function validateItemCustomization(product, item) {
       return `יש לבחור מיקום רקמה עבור ${product.name}`;
     }
   }
+  // flexible option system: required selection groups and text fields
+  for (const group of opts.optionGroups || []) {
+    if (group.required) {
+      const sel = (c.selections || []).find((s) => s.label === group.label);
+      if (!sel?.value) return `יש לבחור "${group.label}" עבור ${product.name}`;
+    }
+  }
+  for (const field of opts.extraTextFields || []) {
+    if (field.required) {
+      const tv = (c.textValues || []).find((t) => t.label === field.label);
+      if (!(tv?.value || '').trim()) return `יש למלא "${field.label}" עבור ${product.name}`;
+    }
+  }
   return null;
 }
 
