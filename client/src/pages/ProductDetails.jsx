@@ -25,6 +25,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [notFound, setNotFound] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const [customization, setCustomization] = useState(emptyCustomization);
   const [quantity, setQuantity] = useState(1);
   const [errors, setErrors] = useState([]);
@@ -144,7 +145,42 @@ export default function ProductDetails() {
         {/* images */}
         <div className="product-images">
           <div className="card main-image">
-            <img src={product.images?.[activeImage]} alt={product.name} />
+            <img
+              src={product.images?.[activeImage]}
+              alt={product.name}
+              onClick={() => setLightbox(true)}
+            />
+            <button
+              type="button"
+              className="zoom-btn"
+              onClick={() => setLightbox(true)}
+              aria-label="הגדלת התמונה"
+              title="הגדלת התמונה"
+            >
+              &#128269;
+            </button>
+            {product.images?.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="img-nav img-nav-next"
+                  onClick={() => setActiveImage((i) => (i + 1) % product.images.length)}
+                  aria-label="התמונה הבאה"
+                >
+                  &#8249;
+                </button>
+                <button
+                  type="button"
+                  className="img-nav img-nav-prev"
+                  onClick={() =>
+                    setActiveImage((i) => (i - 1 + product.images.length) % product.images.length)
+                  }
+                  aria-label="התמונה הקודמת"
+                >
+                  &#8250;
+                </button>
+              </>
+            )}
           </div>
           {product.images?.length > 1 && (
             <div className="thumbs">
@@ -501,6 +537,44 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+
+      {/* lightbox - enlarged image with navigation */}
+      {lightbox && (
+        <div className="lightbox" onClick={() => setLightbox(false)}>
+          <button className="lightbox-close" aria-label="סגירה" onClick={() => setLightbox(false)}>
+            &#10005;
+          </button>
+          {product.images?.length > 1 && (
+            <button
+              className="lightbox-nav lightbox-next"
+              aria-label="התמונה הבאה"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveImage((i) => (i + 1) % product.images.length);
+              }}
+            >
+              &#8249;
+            </button>
+          )}
+          <img
+            src={product.images?.[activeImage]}
+            alt={product.name}
+            onClick={(e) => e.stopPropagation()}
+          />
+          {product.images?.length > 1 && (
+            <button
+              className="lightbox-nav lightbox-prev"
+              aria-label="התמונה הקודמת"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveImage((i) => (i - 1 + product.images.length) % product.images.length);
+              }}
+            >
+              &#8250;
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
