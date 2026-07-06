@@ -62,7 +62,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container">
           <p>&copy; {new Date().getFullYear()} אילנית רקמה - כל הזכויות שמורות</p>
-          <p className="footer-credit">נבנה באהבה על ידי אור ושירז שטרנשוס</p>
+          <p className="footer-credit">נבנה על ידי אור ושירז שטרנשוס</p>
         </div>
       </div>
     </footer>

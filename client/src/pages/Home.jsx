@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/client.js';
 import ProductCard from '../components/ProductCard.jsx';
+import BrandsBar from '../components/BrandsBar.jsx';
 import './Home.css';
 
 const testimonials = [
@@ -23,12 +24,21 @@ const testimonials = [
 // For a real logo image put the file in client/public (e.g. /brands/name.png)
 // and add `logo: '/brands/name.png'` to that entry.
 const brands = [
-  { name: 'משטרת ישראל' },
-  { name: 'איחוד הצלה' },
-  { name: 'עיריית כרמיאל' },
-  { name: 'SHEMO' },
-  { name: 'MAQUETTE' },
+  { name: 'משטרת ישראל', logo: '/brands/police.png' },
+  { name: 'עיריית כרמיאל', logo: '/brands/karmiel.png'},
   { name: 'צה"ל' },
+  { name: 'רשת אורט' },
+  { name: 'רשת המתנסים כרמיאל' },
+  { name: 'מסעדת ממן' },
+  { name: 'מסעדת הבשורה' },
+  { name: 'לוטם דרעי' },
+  { name: 'יקב כמיסה' },
+  { name: 'קרמיקה פרימיום' },
+  { name: 'Pitmaster' },
+  { name: 'כרמל הדברות' },
+  { name: 'מילס טכנולוגיות' },
+  { name: 'מכבסת העיר' },
+  { name: 'ביקור רופא' },
 ];
 
 export default function Home() {
@@ -121,13 +131,7 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title">חברות ועסקים שסמכו עלינו</h2>
           <p className="section-subtitle">גאים לעבוד עם ארגונים, עסקים ומותגים מכל הארץ</p>
-          <div className="brands-bar">
-            {brands.map((b) => (
-              <div className="brand-item" key={b.name} title={b.name}>
-                {b.logo ? <img src={b.logo} alt={b.name} loading="lazy" /> : <span>{b.name}</span>}
-              </div>
-            ))}
-          </div>
+          <BrandsBar brands={brands} />
         </div>
       </section>
 
