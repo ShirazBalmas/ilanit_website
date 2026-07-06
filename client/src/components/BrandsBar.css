@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  direction: ltr; /* first arrow always on the left, second on the right */
 }
 
 .brands-track {
+  direction: rtl; /* keep logos in reading order */
   display: flex;
   align-items: center;
   gap: 56px;

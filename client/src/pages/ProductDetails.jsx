@@ -26,6 +26,8 @@ export default function ProductDetails() {
   const [notFound, setNotFound] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
+  const [origin, setOrigin] = useState('center center');
   const [customization, setCustomization] = useState(emptyCustomization);
   const [quantity, setQuantity] = useState(1);
   const [errors, setErrors] = useState([]);
@@ -163,21 +165,21 @@ export default function ProductDetails() {
               <>
                 <button
                   type="button"
-                  className="img-nav img-nav-next"
+                  className="img-nav img-nav-left"
                   onClick={() => setActiveImage((i) => (i + 1) % product.images.length)}
                   aria-label="התמונה הבאה"
                 >
-                  &#8249;
+                  &#8592;
                 </button>
                 <button
                   type="button"
-                  className="img-nav img-nav-prev"
+                  className="img-nav img-nav-right"
                   onClick={() =>
                     setActiveImage((i) => (i - 1 + product.images.length) % product.images.length)
                   }
                   aria-label="התמונה הקודמת"
                 >
-                  &#8250;
+                  &#8594;
                 </button>
               </>
             )}
@@ -540,37 +542,64 @@ export default function ProductDetails() {
 
       {/* lightbox - enlarged image with navigation */}
       {lightbox && (
-        <div className="lightbox" onClick={() => setLightbox(false)}>
-          <button className="lightbox-close" aria-label="סגירה" onClick={() => setLightbox(false)}>
+        <div
+          className="lightbox"
+          onClick={() => {
+            setLightbox(false);
+            setZoomed(false);
+          }}
+        >
+          <button
+            className="lightbox-close"
+            aria-label="סגירה"
+            onClick={() => {
+              setLightbox(false);
+              setZoomed(false);
+            }}
+          >
             &#10005;
           </button>
           {product.images?.length > 1 && (
             <button
-              className="lightbox-nav lightbox-next"
+              className="lightbox-nav lightbox-left"
               aria-label="התמונה הבאה"
               onClick={(e) => {
                 e.stopPropagation();
+                setZoomed(false);
                 setActiveImage((i) => (i + 1) % product.images.length);
               }}
             >
-              &#8249;
+              &#8592;
             </button>
           )}
           <img
+            className={`lightbox-img ${zoomed ? 'zoomed' : ''}`}
             src={product.images?.[activeImage]}
             alt={product.name}
-            onClick={(e) => e.stopPropagation()}
+            style={zoomed ? { transformOrigin: origin } : undefined}
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomed((z) => !z);
+            }}
+            onMouseMove={(e) => {
+              if (!zoomed) return;
+              const r = e.currentTarget.getBoundingClientRect();
+              const x = ((e.clientX - r.left) / r.width) * 100;
+              const y = ((e.clientY - r.top) / r.height) * 100;
+              setOrigin(`${x}% ${y}%`);
+            }}
           />
           {product.images?.length > 1 && (
             <button
-              className="lightbox-nav lightbox-prev"
+              className="lightbox-nav lightbox-right"
               aria-label="התמונה הקודמת"
               onClick={(e) => {
                 e.stopPropagation();
+                setZoomed(false);
                 setActiveImage((i) => (i - 1 + product.images.length) % product.images.length);
               }}
             >
-              &#8250;
+              &#8594;
             </button>
           )}
         </div>

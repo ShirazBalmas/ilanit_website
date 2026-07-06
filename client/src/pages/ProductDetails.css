@@ -62,12 +62,12 @@
   transform: translateY(-50%) scale(1.08);
 }
 
-.img-nav-prev {
-  inset-inline-start: 12px;
+.img-nav-left {
+  left: 12px;
 }
 
-.img-nav-next {
-  inset-inline-end: 12px;
+.img-nav-right {
+  right: 12px;
 }
 
 /* lightbox */
@@ -83,12 +83,18 @@
   cursor: zoom-out;
 }
 
-.lightbox img {
+.lightbox-img {
   max-width: 90vw;
   max-height: 88vh;
   object-fit: contain;
   border-radius: var(--radius-sm);
-  cursor: default;
+  cursor: zoom-in;
+  transition: transform 0.15s ease-out;
+}
+
+.lightbox-img.zoomed {
+  transform: scale(2.5);
+  cursor: zoom-out;
 }
 
 .lightbox-close {
@@ -130,12 +136,12 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-.lightbox-prev {
-  inset-inline-start: 20px;
+.lightbox-left {
+  left: 20px;
 }
 
-.lightbox-next {
-  inset-inline-end: 20px;
+.lightbox-right {
+  right: 20px;
 }
 
 .thumbs {

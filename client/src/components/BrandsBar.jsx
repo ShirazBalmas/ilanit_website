@@ -33,9 +33,9 @@ export default function BrandsBar({ brands }) {
         type="button"
         className="brands-arrow"
         onClick={() => scroll(-1)}
-        aria-label="הקודם"
+        aria-label="שמאלה"
       >
-        &#8249;
+        &#8592;
       </button>
       <div className="brands-track" ref={trackRef}>
         {brands.map((b) => (
@@ -46,9 +46,9 @@ export default function BrandsBar({ brands }) {
         type="button"
         className="brands-arrow"
         onClick={() => scroll(1)}
-        aria-label="הבא"
+        aria-label="ימינה"
       >
-        &#8250;
+        &#8594;
       </button>
     </div>
   );
