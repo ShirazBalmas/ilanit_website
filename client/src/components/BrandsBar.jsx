@@ -32,10 +32,10 @@ export default function BrandsBar({ brands }) {
       <button
         type="button"
         className="brands-arrow"
-        onClick={() => scroll(1)}
+        onClick={() => scroll(-1)}
         aria-label="הקודם"
       >
-        &#8250;
+        &#8249;
       </button>
       <div className="brands-track" ref={trackRef}>
         {brands.map((b) => (
@@ -45,10 +45,10 @@ export default function BrandsBar({ brands }) {
       <button
         type="button"
         className="brands-arrow"
-        onClick={() => scroll(-1)}
+        onClick={() => scroll(1)}
         aria-label="הבא"
       >
-        &#8249;
+        &#8250;
       </button>
     </div>
   );
