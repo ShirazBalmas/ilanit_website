@@ -19,6 +19,18 @@ const testimonials = [
   },
 ];
 
+// "trusted by" logo bar. Replace with your real clients.
+// For a real logo image put the file in client/public (e.g. /brands/name.png)
+// and add `logo: '/brands/name.png'` to that entry.
+const brands = [
+  { name: 'משטרת ישראל' },
+  { name: 'איחוד הצלה' },
+  { name: 'עיריית כרמיאל' },
+  { name: 'SHEMO' },
+  { name: 'MAQUETTE' },
+  { name: 'צה"ל' },
+];
+
 export default function Home() {
   const [featured, setFeatured] = useState([]);
   const [bestSellers, setBestSellers] = useState([]);
@@ -103,6 +115,21 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* Trusted by / client logos */}
+      <section className="brands-section">
+        <div className="container">
+          <h2 className="section-title">חברות ועסקים שסמכו עלינו</h2>
+          <p className="section-subtitle">גאים לעבוד עם ארגונים, עסקים ומותגים מכל הארץ</p>
+          <div className="brands-bar">
+            {brands.map((b) => (
+              <div className="brand-item" key={b.name} title={b.name}>
+                {b.logo ? <img src={b.logo} alt={b.name} loading="lazy" /> : <span>{b.name}</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Gallery */}
       <section className="section gallery-section" id="gallery">

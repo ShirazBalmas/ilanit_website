@@ -70,6 +70,16 @@
   opacity: 0.7;
 }
 
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-credit {
+  margin-top: 4px !important;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
 @media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr;
