@@ -26,6 +26,20 @@ npm run dev
 - האתר: http://localhost:5173
 - ה-API: http://localhost:5000
 
+### בניית מסד הנתונים (Collections + אינדקסים)
+
+| פקודה | מה היא עושה | מתי להשתמש |
+|---|---|---|
+| `npm run setup-db` | בונה את כל האוספים, האינדקסים, משתמש המנהל ונתוני הפתיחה - **בלי למחוק כלום** | הקמה ראשונה, או מול מסד בענן (Atlas) |
+| `npm run seed` | **מוחק הכול** ובונה מחדש נתוני דוגמה | איפוס מלא בסביבת פיתוח |
+
+הרצה מול מסד מרוחק (למשל MongoDB Atlas):
+
+```bash
+cd server
+node src/utils/setup-db.js "mongodb+srv://user:password@cluster.mongodb.net/ilanit-rikma"
+```
+
 ### הרצת MongoDB ידנית (אם השירות לא פועל)
 
 ```powershell
