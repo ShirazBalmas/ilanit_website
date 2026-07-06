@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/auth.js';
@@ -36,6 +37,17 @@ app.use('/api/gallery', galleryRoutes);
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 app.use(errorHandler);
+
+// serve the built React app (production). Any non-API, non-uploads route
+// returns index.html so client-side routing (react-router) works on refresh.
+const clientDist = path.join(__dirname, '..', '..', 'client', 'dist');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) return next();
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
