@@ -6,12 +6,58 @@ import BrandsBar from '../components/BrandsBar.jsx';
 import Reviews from '../components/Reviews.jsx';
 import './Home.css';
 
+// black line icons for the benefit strip
+const svgProps = {
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.6,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+  width: 40,
+  height: 40,
+};
+
+const TruckIcon = () => (
+  <svg {...svgProps}>
+    <path d="M2 6h11v10H2z" />
+    <path d="M13 9h4l3 3v4h-7z" />
+    <circle cx="6" cy="18" r="1.6" />
+    <circle cx="16.5" cy="18" r="1.6" />
+  </svg>
+);
+const BadgeIcon = () => (
+  <svg {...svgProps}>
+    <circle cx="12" cy="9" r="6" />
+    <path d="M9.3 9.3l2 2 3.6-3.8" />
+    <path d="M8.5 14.2l-1.5 6 5-2.5 5 2.5-1.5-6" />
+  </svg>
+);
+const ChatIcon = () => (
+  <svg {...svgProps}>
+    <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 3v-3H6a2 2 0 0 1-2-2z" />
+    <circle cx="8.5" cy="10" r=".7" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="10" r=".7" fill="currentColor" stroke="none" />
+    <circle cx="15.5" cy="10" r=".7" fill="currentColor" stroke="none" />
+  </svg>
+);
+const SewingIcon = () => (
+  <svg {...svgProps}>
+    <path d="M3 19h18" />
+    <path d="M5 19v-3.5h9V19" />
+    <path d="M6 15.5V9h11a1 1 0 0 1 1 1v2.5" />
+    <path d="M18 12.5V16" />
+    <path d="M18 16v2.5" />
+    <circle cx="8.5" cy="12.2" r="1.2" />
+  </svg>
+);
+
 // benefit highlights shown as a strip under the hero
 const features = [
-  { icon: '🚚', title: 'משלוח חינם', text: 'משלוח מהיר לכל הארץ בקנייה מעל 350 ₪' },
-  { icon: '✨', title: 'איכות ללא פשרות', text: 'חומרים מעולים ורקמה מדויקת בעבודת יד' },
-  { icon: '💬', title: 'שירות אישי', text: 'ליווי צמוד מהרעיון ועד המוצר המוגמר' },
-  { icon: '🧵', title: 'רקמה ממוחשבת', text: 'עיצוב אישי מקצועי לכל מוצר' },
+  { icon: <TruckIcon />, title: 'משלוח חינם', text: 'משלוח מהיר לכל הארץ בקנייה מעל 350 ₪' },
+  { icon: <BadgeIcon />, title: 'איכות ללא פשרות', text: 'חומרים מעולים ורקמה מדויקת בעבודת יד' },
+  { icon: <ChatIcon />, title: 'שירות אישי', text: 'ליווי צמוד מהרעיון ועד המוצר המוגמר' },
+  { icon: <SewingIcon />, title: 'רקמה ממוחשבת', text: 'עיצוב אישי מקצועי לכל מוצר' },
 ];
 
 // "trusted by" logo bar. Replace with your real clients.
