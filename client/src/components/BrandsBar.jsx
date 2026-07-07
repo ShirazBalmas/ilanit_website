@@ -24,7 +24,13 @@ export default function BrandsBar({ brands }) {
     const track = trackRef.current;
     if (!track) return;
     const amount = Math.max(240, track.clientWidth * 0.8);
-    track.scrollBy({ left: direction * amount, behavior: 'smooth' });
+    const max = track.scrollWidth - track.clientWidth;
+    const cur = track.scrollLeft;
+    // wrap to the other end at the boundaries so the arrows never get stuck
+    let target;
+    if (direction > 0) target = cur >= max - 2 ? 0 : Math.min(max, cur + amount);
+    else target = cur <= 2 ? max : Math.max(0, cur - amount);
+    track.scrollLeft = target;
   }
 
   return (

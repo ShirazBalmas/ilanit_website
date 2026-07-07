@@ -6,12 +6,10 @@
 }
 
 .brands-track {
-  direction: rtl; /* keep logos in reading order */
   display: flex;
   align-items: center;
-  gap: 56px;
+  gap: 24px;
   overflow-x: auto;
-  scroll-behavior: smooth;
   padding: 12px 4px;
   flex: 1;
   scrollbar-width: none; /* Firefox */
@@ -26,19 +24,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 95px;
-  min-width: 150px;
-  padding: 0 12px;
-  transition: transform 0.25s;
+  height: 110px;
+  width: 170px;
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .brand-item:hover {
   transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
 }
 
 .brand-item img {
-  max-height: 85px;
-  max-width: 190px;
+  max-height: 100%;
+  max-width: 100%;
   object-fit: contain;
 }
 

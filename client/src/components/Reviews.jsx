@@ -8,7 +8,7 @@ const GOOGLE_URL =
   'https://www.google.com/search?q=%D7%90%D7%99%D7%9C%D7%A0%D7%99%D7%AA+%D7%9E%D7%A2%D7%A6%D7%91%D7%AA+%D7%9C%D7%9B%D7%9D+%D7%97%D7%9C%D7%95%D7%9E%D7%95%D7%AA+%D7%91%D7%99%D7%A7%D7%95%D7%A8%D7%95%D7%AA';
 
 const RATING = 5.0;
-const COUNT = 116;
+const COUNT = 13;
 
 const reviews = [
   { name: 'Gef Gef', initial: 'G', color: '#C0392B',
