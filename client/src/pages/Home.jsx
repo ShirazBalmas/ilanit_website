@@ -20,6 +20,14 @@ const testimonials = [
   },
 ];
 
+// benefit highlights shown as a strip under the hero
+const features = [
+  { icon: '🚚', title: 'משלוח חינם', text: 'משלוח מהיר לכל הארץ בקנייה מעל 350 ₪' },
+  { icon: '✨', title: 'איכות ללא פשרות', text: 'חומרים מעולים ורקמה מדויקת בעבודת יד' },
+  { icon: '💬', title: 'שירות אישי', text: 'ליווי צמוד מהרעיון ועד המוצר המוגמר' },
+  { icon: '🧵', title: 'רקמה ממוחשבת', text: 'עיצוב אישי מקצועי לכל מוצר' },
+];
+
 // "trusted by" logo bar. Replace with your real clients.
 // For a real logo image put the file in client/public (e.g. /brands/name.png)
 // and add `logo: '/brands/name.png'` to that entry.
@@ -82,6 +90,21 @@ export default function Home() {
             <Link to="/catalog" className="btn btn-outline">עצבו מוצר משלכם</Link>
             <a href="#contact" className="btn btn-outline">צרו קשר</a>
           </div>
+        </div>
+      </section>
+
+      {/* Feature highlights */}
+      <section className="features-strip">
+        <div className="container features-bar">
+          {features.map((f) => (
+            <div className="feature-item" key={f.title}>
+              <span className="feature-icon">{f.icon}</span>
+              <div>
+                <strong>{f.title}</strong>
+                <p>{f.text}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
