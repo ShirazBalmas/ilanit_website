@@ -43,10 +43,10 @@
 }
 
 .reviews-track {
+  direction: ltr;
   display: flex;
   gap: 18px;
   overflow-x: auto;
-  scroll-behavior: smooth;
   flex: 1;
   padding: 6px 2px;
   scrollbar-width: none;
@@ -57,6 +57,7 @@
 }
 
 .review-card {
+  direction: rtl;
   flex: 0 0 auto;
   width: 270px;
   background: var(--white);

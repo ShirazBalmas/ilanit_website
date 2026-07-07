@@ -38,7 +38,15 @@ export default function Reviews() {
   const trackRef = useRef(null);
   const scroll = (dir) => {
     const t = trackRef.current;
-    if (t) t.scrollBy({ left: dir * Math.max(280, t.clientWidth * 0.8), behavior: 'smooth' });
+    if (!t) return;
+    const amount = Math.max(280, t.clientWidth * 0.8);
+    const max = t.scrollWidth - t.clientWidth;
+    const cur = t.scrollLeft;
+    // wrap to the other end at the boundaries so the arrows never get stuck
+    let target;
+    if (dir > 0) target = cur >= max - 2 ? 0 : Math.min(max, cur + amount);
+    else target = cur <= 2 ? max : Math.max(0, cur - amount);
+    t.scrollLeft = target;
   };
 
   return (
