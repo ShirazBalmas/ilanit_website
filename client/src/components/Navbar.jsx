@@ -2,12 +2,15 @@ import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useCart } from '../context/CartContext.jsx';
+import { formatPrice } from '../utils/price.js';
+import CartDrawer from './CartDrawer.jsx';
 import './Navbar.css';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
-  const { count } = useCart();
+  const { count, subtotal } = useCart();
   const [open, setOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -49,11 +52,24 @@ export default function Navbar() {
           )}
         </nav>
 
-        <Link to="/cart" className="cart-link" onClick={close} aria-label="עגלת קניות">
-          &#128722;
-          {count > 0 && <span className="cart-badge">{count}</span>}
-        </Link>
+        <button
+          type="button"
+          className="cart-link"
+          onClick={() => {
+            close();
+            setCartOpen(true);
+          }}
+          aria-label="עגלת קניות"
+        >
+          <span className="cart-total">{formatPrice(subtotal)}</span>
+          <span className="cart-bag">
+            &#128717;
+            {count > 0 && <span className="cart-badge">{count}</span>}
+          </span>
+        </button>
       </div>
+
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </header>
   );
 }

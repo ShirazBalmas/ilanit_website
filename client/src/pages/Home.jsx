@@ -3,22 +3,8 @@ import { Link } from 'react-router-dom';
 import api from '../api/client.js';
 import ProductCard from '../components/ProductCard.jsx';
 import BrandsBar from '../components/BrandsBar.jsx';
+import Reviews from '../components/Reviews.jsx';
 import './Home.css';
-
-const testimonials = [
-  {
-    name: 'מיכל מחיפה',
-    text: 'הזמנתי סט חלוקים לחתונה של אחותי - התוצאה הייתה מושלמת! הרקמה עדינה ומדויקת והשירות של אילנית פשוט מכל הלב.',
-  },
-  {
-    name: 'יוסי מכרמיאל',
-    text: 'מיתגנו את כל צוות המסעדה בחולצות רקומות. איכות מעולה, מחיר הוגן וזמני אספקה מהירים. ממליץ בחום!',
-  },
-  {
-    name: 'רותם מתל אביב',
-    text: 'מתנת הלידה הכי מרגשת שנתתי אי פעם. השמיכה עם השם של התינוקת הייתה בדיוק כמו שדמיינתי ואפילו יותר יפה.',
-  },
-];
 
 // benefit highlights shown as a strip under the hero
 const features = [
@@ -172,18 +158,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="container section">
+      {/* Google reviews */}
+      <section className="section" style={{ paddingBottom: 0 }}>
         <h2 className="section-title">לקוחות ממליצים</h2>
-        <div className="testimonials">
-          {testimonials.map((t, i) => (
-            <blockquote key={i} className="card testimonial">
-              <p>"{t.text}"</p>
-              <cite>- {t.name}</cite>
-            </blockquote>
-          ))}
-        </div>
+        <p className="section-subtitle">מאות ביקורות חמישה כוכבים בגוגל</p>
       </section>
+      <Reviews />
 
       {/* Contact */}
       <section className="container section contact-section">

@@ -1,0 +1,129 @@
+.reviews-section {
+  padding: 48px 0;
+  background: var(--cream-dark);
+}
+
+.reviews-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.reviews-summary {
+  flex: 0 0 auto;
+  width: 180px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.reviews-score {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.reviews-count {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.stars {
+  color: #f5b400;
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  flex: 1;
+  padding: 6px 2px;
+  scrollbar-width: none;
+}
+
+.reviews-track::-webkit-scrollbar {
+  display: none;
+}
+
+.review-card {
+  flex: 0 0 auto;
+  width: 270px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.review-meta {
+  flex: 1;
+}
+
+.review-meta strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.review-text {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.reviews-arrow {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-light);
+  background: var(--white);
+  color: var(--gold-dark);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviews-arrow:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+
+@media (max-width: 760px) {
+  .reviews-summary {
+    width: 140px;
+    padding: 14px;
+  }
+  .reviews-arrow {
+    display: none;
+  }
+}

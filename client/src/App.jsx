@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import AccessibilityWidget from './components/AccessibilityWidget.jsx';
 import Home from './pages/Home.jsx';
 import Catalog from './pages/Catalog.jsx';
 import ProductDetails from './pages/ProductDetails.jsx';
@@ -58,6 +59,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <AccessibilityWidget />
       <a
         className="whatsapp-fab"
         href="https://wa.me/972500000000?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D"

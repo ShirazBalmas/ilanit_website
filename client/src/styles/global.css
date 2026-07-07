@@ -25,6 +25,26 @@
   padding: 0;
 }
 
+/* accessibility modes (toggled by AccessibilityWidget) */
+html.a11y-light,
+html.a11y-light body {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+html.a11y-light .card,
+html.a11y-light .navbar {
+  background: #ffffff !important;
+}
+html.a11y-links a {
+  text-decoration: underline !important;
+  outline: 2px solid var(--gold-dark);
+  outline-offset: 1px;
+}
+html.a11y-readable,
+html.a11y-readable * {
+  font-family: Arial, 'Segoe UI', sans-serif !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
