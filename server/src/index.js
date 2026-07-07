@@ -13,6 +13,7 @@ import uploadRoutes from './routes/upload.js';
 import paymentRoutes from './routes/payment.js';
 import messageRoutes from './routes/messages.js';
 import galleryRoutes from './routes/gallery.js';
+import imageRoutes from './routes/images.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -33,6 +34,7 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/images', imageRoutes);
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 

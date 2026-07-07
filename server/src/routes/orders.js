@@ -3,6 +3,7 @@ import Order from '../models/Order.js';
 import Product from '../models/Product.js';
 import { protect, adminOnly, optionalAuth } from '../middleware/auth.js';
 import { calcUnitPrice, calcShipping } from '../utils/price.js';
+import { sendOrderEmails } from '../utils/email.js';
 
 const router = Router();
 
@@ -118,6 +119,9 @@ router.post('/', optionalAuth, async (req, res, next) => {
         Product.findByIdAndUpdate(i.product, { $inc: { sold: i.quantity } })
       )
     );
+
+    // notify admin + customer by email (fire-and-forget, never blocks the order)
+    sendOrderEmails(order).catch((e) => console.error('[email]', e));
 
     res.status(201).json({ order });
   } catch (err) {
