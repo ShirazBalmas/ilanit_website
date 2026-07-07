@@ -62,31 +62,33 @@ export default function Reviews() {
           </a>
         </div>
 
-        <button className="reviews-arrow" onClick={() => scroll(-1)} aria-label="שמאלה">
-          &#8592;
-        </button>
+        <div className="reviews-carousel">
+          <button className="reviews-arrow" onClick={() => scroll(-1)} aria-label="שמאלה">
+            &#8592;
+          </button>
 
-        <div className="reviews-track" ref={trackRef}>
-          {reviews.map((r) => (
-            <div className="review-card" key={r.name}>
-              <div className="review-head">
-                <span className="review-avatar" style={{ background: r.color }}>
-                  {r.initial}
-                </span>
-                <div className="review-meta">
-                  <strong>{r.name}</strong>
-                  <Stars />
+          <div className="reviews-track" ref={trackRef}>
+            {reviews.map((r) => (
+              <div className="review-card" key={r.name}>
+                <div className="review-head">
+                  <span className="review-avatar" style={{ background: r.color }}>
+                    {r.initial}
+                  </span>
+                  <div className="review-meta">
+                    <strong>{r.name}</strong>
+                    <Stars />
+                  </div>
+                  <GoogleG />
                 </div>
-                <GoogleG />
+                <p className="review-text">{r.text}</p>
               </div>
-              <p className="review-text">{r.text}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <button className="reviews-arrow" onClick={() => scroll(1)} aria-label="ימינה">
-          &#8594;
-        </button>
+          <button className="reviews-arrow" onClick={() => scroll(1)} aria-label="ימינה">
+            &#8594;
+          </button>
+        </div>
       </div>
     </section>
   );
