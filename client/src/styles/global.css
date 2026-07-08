@@ -300,7 +300,7 @@ label {
 .whatsapp-fab {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  right: 24px;
   z-index: 50;
   width: 56px;
   height: 56px;

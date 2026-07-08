@@ -1,33 +1,47 @@
 .a11y {
   position: fixed;
-  top: 90px;
-  inset-inline-start: 0;
+  bottom: 24px;
+  left: 24px;
   z-index: 70;
 }
 
 .a11y-toggle {
-  width: 48px;
-  height: 48px;
-  border: none;
-  background: var(--gold);
-  color: var(--white);
-  font-size: 1.6rem;
-  border-radius: 0 10px 10px 0;
-  box-shadow: var(--shadow);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  box-shadow: var(--shadow-hover);
 }
 
 .a11y-toggle:hover {
-  background: var(--gold-dark);
+  background: #000;
+}
+
+.a11y-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #2f6bd8;
+  color: #fff;
+  font-size: 1.05rem;
 }
 
 .a11y-panel {
   position: absolute;
-  top: 0;
-  inset-inline-start: 54px;
+  bottom: 56px;
+  left: 0;
   width: 210px;
+  max-height: 70vh;
+  overflow-y: auto;
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow-hover);
@@ -75,7 +89,6 @@ html[style*='filter'] .a11y {
 
 @media (max-width: 640px) {
   .a11y-panel {
-    inset-inline-start: 54px;
     width: 180px;
   }
 }

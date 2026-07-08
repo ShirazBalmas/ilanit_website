@@ -54,7 +54,8 @@ export default function AccessibilityWidget() {
         aria-label="כלי נגישות"
         title="כלי נגישות"
       >
-        &#9855;
+        <span className="a11y-label">נגישות</span>
+        <span className="a11y-icon">&#9855;</span>
       </button>
 
       {open && (

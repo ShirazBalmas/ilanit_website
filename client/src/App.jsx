@@ -62,7 +62,7 @@ export default function App() {
       <AccessibilityWidget />
       <a
         className="whatsapp-fab"
-        href="https://wa.me/972500000000?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D"
+        href="https://wa.me/972509984731?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A4%D7%A8%D7%98%D7%99%D7%9D"
         target="_blank"
         rel="noreferrer"
         aria-label="צרו קשר בוואטסאפ"
