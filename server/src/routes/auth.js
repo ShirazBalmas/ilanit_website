@@ -1,9 +1,24 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import Order from '../models/Order.js';
 import { protect } from '../middleware/auth.js';
 
 const router = Router();
+
+// links past guest orders (no user, same email) to this account, so an order
+// placed as a guest shows up in the customer's history once they sign up / log in
+async function claimGuestOrders(user) {
+  try {
+    const escaped = user.email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    await Order.updateMany(
+      { user: null, 'customer.email': new RegExp(`^${escaped}$`, 'i') },
+      { $set: { user: user._id } }
+    );
+  } catch (err) {
+    console.error('[claimGuestOrders]', err.message);
+  }
+}
 
 function signToken(user) {
   return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
@@ -37,6 +52,7 @@ router.post('/register', async (req, res, next) => {
     if (exists) return res.status(400).json({ message: 'כתובת האימייל כבר רשומה במערכת' });
 
     const user = await User.create({ name, email, password, phone });
+    await claimGuestOrders(user); // adopt any prior guest orders with this email
     res.status(201).json({ token: signToken(user), user: userPayload(user) });
   } catch (err) {
     next(err);
@@ -51,6 +67,7 @@ router.post('/login', async (req, res, next) => {
     if (!user || !(await user.comparePassword(password || ''))) {
       return res.status(401).json({ message: 'אימייל או סיסמה שגויים' });
     }
+    await claimGuestOrders(user); // adopt guest orders placed while logged out
     res.json({ token: signToken(user), user: userPayload(user) });
   } catch (err) {
     next(err);
