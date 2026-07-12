@@ -63,7 +63,7 @@ export default function AccessibilityStatement() {
           <li>שם: אילנית</li>
           <li>טלפון: <a href="tel:+972509984731">050-9984731</a></li>
           <li>וואטסאפ: <a href="https://wa.me/972509984731" target="_blank" rel="noreferrer">שליחת הודעה</a></li>
-          <li>דוא"ל: [להשלים כתובת אימייל ליצירת קשר]</li>
+          <li>דוא"ל: <a href="mailto:ilanit.sht@gmail.com">ilanit.sht@gmail.com</a></li>
         </ul>
       </section>
     </div>
