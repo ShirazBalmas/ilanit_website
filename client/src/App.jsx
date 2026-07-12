@@ -12,6 +12,8 @@ import OrderConfirmation from './pages/OrderConfirmation.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Profile from './pages/Profile.jsx';
+import Terms from './pages/Terms.jsx';
+import AccessibilityStatement from './pages/AccessibilityStatement.jsx';
 import Admin from './pages/admin/Admin.jsx';
 import { useAuth } from './context/AuthContext.jsx';
 
@@ -39,6 +41,8 @@ export default function App() {
           <Route path="/order/:orderNumber" element={<OrderConfirmation />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/accessibility" element={<AccessibilityStatement />} />
           <Route
             path="/profile"
             element={

@@ -18,6 +18,8 @@ export default function Footer() {
           <Link to="/catalog">קטלוג מוצרים</Link>
           <Link to="/cart">עגלת קניות</Link>
           <Link to="/login">התחברות</Link>
+          <Link to="/terms">תקנון ותנאי שימוש</Link>
+          <Link to="/accessibility">הצהרת נגישות</Link>
         </div>
         <div>
           <h4>יצירת קשר</h4>
